@@ -1,4 +1,4 @@
-CXX=clang++
+CXX=g++
 # CXX=g++
 
 # We have -Wno-unused-parameter so that the compiler

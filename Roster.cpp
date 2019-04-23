@@ -95,9 +95,11 @@ std::string Roster::toString() const {
   result += "],\n";
   */
   result += getStudentAt(i).toString();
+
   if (i < numStudents-1)
   result += ",\n";
   else result += "\n";
+
   }
   result += "}\n";
   return result;
@@ -106,21 +108,43 @@ std::string Roster::toString() const {
 
 void Roster::sortByPerm() {
   // SELECTION SORT
-  // stub does nothing
+  for (int i = numStudents; i > 0; i--){
+	sortByPermHelper(i);
+/*
+	  maxIndex = 0;
+	  maxPerm = getStudentAt(i).getPerm();
+	  for (int j = 0; j < i; j++){
+		if (getStudentAt(j).getPerm()  > maxPerm){
+			maxPerm = getStudentAt(j).getPerm();
+			maxIndex = j;
+		}
+          }
+*/
+  }
 }
 
 int Roster::indexOfMaxPermAmongFirstKStudents(int k) const {
-  return 0; // STUB
+  int maxIndex(0), maxPerm(getStudentAt(0).getPerm());
+  for (int i = 0; i < k; i++){
+	if (getStudentAt(i).getPerm() > maxPerm){
+		maxIndex = i;
+		maxPerm = getStudentAt(i).getPerm();
+	}
+  }
+  return maxIndex;
 }
 
 void Roster::sortByPermHelper(int k) {
   // swaps max perm from [0..k-1] with elem [k-1]
 
-
   int im = indexOfMaxPermAmongFirstKStudents(k);
-
+  Student* temp = students[im];
+  this->students[im] = this->students[k-1];
+  this->students[k-1] = temp;
+  
+  
   // now swap the pointers between index im and index k-1
-
+  
   // THIS IS STILL A STUB !!!
   
 }
